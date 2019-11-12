@@ -1,0 +1,40 @@
+{
+    "name": "elephantmfa/elephantmfa",
+    "type": "project",
+    "description": "The Elephant Mail Filtering Agent",
+    "keywords": [
+        "framework",
+        "elephantmfa",
+        "mfa",
+        "mail",
+        "filtering"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.2",
+        "elephantmfa/framework": "*"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "^1.4",
+        "mockery/mockery": "^1.0",
+        "nunomaduro/collision": "^3.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
