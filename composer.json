@@ -12,7 +12,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
-        "elephantmfa/framework": "*"
+        "elephantmfa/framework": "^0.1"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.4",
