@@ -6,6 +6,11 @@ require __DIR__ . '/vendor/autoload.php';
 
 $app = require_once __DIR__ . '/bootstrap/app.php';
 
-$kernel = $app->make(Elephant\Contracts\Mail\Kernel::class);
+if ($argv[1] == 'start') {
+    $kernel = $app->make(Elephant\Contracts\Mail\Kernel::class);
 
-$kernel->handle();
+    $kernel->handle();
+} else {
+    // @todo Implement standard console access to allow for 
+    //       scaffolding and the like.
+}
