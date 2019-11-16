@@ -9,4 +9,9 @@ $app->singleton(
     App\Mail\Kernel::class
 );
 
+$app->singleton(
+    Elephant\Contracts\Debug\ExceptionHandler::class,
+    App\Exceptions\Handler::class
+);
+
 return $app;
