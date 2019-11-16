@@ -3,7 +3,7 @@
 namespace App\Mail\Filters\RcptTo;
 
 use Elephant\Contracts\Filter;
-use Elephant\Mail\Mail;
+use Elephant\Contracts\Mail\Mail;
 
 class LogRecipient implements Filter
 {

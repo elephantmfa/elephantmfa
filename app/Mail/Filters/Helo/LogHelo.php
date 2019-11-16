@@ -3,7 +3,7 @@
 namespace App\Mail\Filters\Helo;
 
 use Elephant\Contracts\Filter;
-use Elephant\Mail\Mail;
+use Elephant\Contracts\Mail\Mail;
 
 class LogHelo implements Filter
 {

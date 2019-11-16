@@ -3,7 +3,7 @@
 namespace App\Mail\Filters\MailFrom;
 
 use Elephant\Contracts\Filter;
-use Elephant\Mail\Mail;
+use Elephant\Contracts\Mail\Mail;
 
 class LogEnvelopeFrom implements Filter
 {
