@@ -3,13 +3,14 @@
 namespace App\Mail\Filters\Connect;
 
 use Elephant\Contracts\Filter;
-use Elephant\Mail\Mail;
+use Elephant\Contracts\Mail\Mail;
 
-class LogConnect implements Filter
+class SetOutbound implements Filter
 {
     public function filter(Mail $email, $next)
     {
         $email->outbound = $email->connection->received_port == config('app.ports.outbound');
+        info("is outbound = " . ($email->outbound ? 'true' : 'false'));
         return $next($email);
     }
 }
