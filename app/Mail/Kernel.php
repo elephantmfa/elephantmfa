@@ -14,7 +14,7 @@ class Kernel extends MailKernel
          * @var array
          */
         'connect' => [
-            App\Mail\Filters\Connect\LogConnect::class,
+            \App\Mail\Filters\Connect\SetOutbound::class,
         ],
 
         /**
@@ -23,7 +23,7 @@ class Kernel extends MailKernel
          * @var array
          */
         'helo' => [
-            App\Mail\Filters\Helo\LogHelo::class,
+            \App\Mail\Filters\Helo\LogHelo::class,
         ],
 
         /**
@@ -32,7 +32,7 @@ class Kernel extends MailKernel
          * @var array
          */
         'mail_from' => [
-            App\Mail\Filters\MailFrom\LogFrom::class,
+            \App\Mail\Filters\MailFrom\LogFrom::class,
         ],
 
         /**
@@ -41,7 +41,7 @@ class Kernel extends MailKernel
          * @var array
          */
         'rcpt_to' => [
-            App\Mail\Filters\RcptTo\LogRecipient::class,
+            \App\Mail\Filters\RcptTo\LogRecipient::class,
         ],
 
         /**
@@ -50,7 +50,7 @@ class Kernel extends MailKernel
          * @var array
          */
         'data' => [
-            App\Mail\Filters\Data\LogSubject::class,
+            \App\Mail\Filters\Data\LogSubject::class,
         ],
 
         /**
@@ -59,7 +59,7 @@ class Kernel extends MailKernel
          * @var array
          */
         'queued' => [
-            App\Mail\Filters\Queued\LogQueueId::class,
+            \App\Mail\Filters\Queued\LogQueueId::class,
         ],
     ];
 }
