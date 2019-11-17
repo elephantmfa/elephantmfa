@@ -9,7 +9,7 @@ class LogRecipient implements Filter
 {
     public function filter(Mail $email, $next)
     {
-        info($email->envelope->recipient);
+        info($email->envelope->recipients[0]);
         return $next($email);
     }
 }
