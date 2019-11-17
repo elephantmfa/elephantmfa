@@ -32,7 +32,7 @@ class Kernel extends MailKernel
          * @var array
          */
         'mail_from' => [
-            \App\Mail\Filters\MailFrom\LogFrom::class,
+            \App\Mail\Filters\MailFrom\LogEnvelopeFrom::class,
         ],
 
         /**
