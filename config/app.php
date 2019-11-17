@@ -43,29 +43,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Greeting Banner
-    |--------------------------------------------------------------------------
-    |
-    | The banner to respond with when a connection is made.
-    */
-    'greeting_banner' => env('GREETING_BANNER', 'Greetings from ElephantMFA'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Ports
-    |--------------------------------------------------------------------------
-    |
-    | The ports to be listening on. This is in 127.0.0.1:25 format, however if
-    | the IP isn't provided, it will default to 127.0.0.1. These can be
-    | names, so that distinctions can be made with filters.
-    */
-    'ports' => [
-        'inbound' => env('INBOUND_PORT', 10023),
-        'outbound' => env('OUTBOUND_PORT', 10024),
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |
