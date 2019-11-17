@@ -9,6 +9,8 @@ if ($argv[1] == 'start') {
     $kernel = $app->make(Elephant\Contracts\Mail\Kernel::class);
 
     $kernel->handle();
+
+    $kernel->terminate();
 } else {
     // @todo Implement standard console access to allow for 
     //       scaffolding and the like.
