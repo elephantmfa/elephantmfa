@@ -9,7 +9,7 @@ class LogQueueId implements Filter
 {
     public function filter(Mail $email, $next)
     {
-        info($email->queue_id);
+        info($email->getQueueId());
         return $next($email);
     }
 }

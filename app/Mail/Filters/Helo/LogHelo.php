@@ -9,7 +9,7 @@ class LogHelo implements Filter
 {
     public function filter(Mail $email, $next)
     {
-        info($email->envelope->helo);
+        info($email->getHelo());
         return $next($email);
     }
 }
