@@ -9,8 +9,8 @@ class SetOutbound implements Filter
 {
     public function filter(Mail $email, $next)
     {
-        $email->outbound = $email->getConnection()->received_port == config('app.ports.outbound');
-        info("is outbound = " . ($email->outbound ? 'true' : 'false'));
+        $email->supplementalData['outbound'] = $email->getConnection()->receivedPort == config('app.ports.outbound');
+        info("is outbound = " . ($email->supplementalData['outbound'] ? 'true' : 'false'));
         return $next($email);
     }
 }
