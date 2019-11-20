@@ -98,6 +98,7 @@ return [
          */
         Elephant\EventLoop\EventLoopServiceProvider::class,
         Elephant\Mail\MailServiceProvider::class,
+        Elephant\Async\AsyncServiceProvider::class,
 
         /*
          * Package Service Providers...
