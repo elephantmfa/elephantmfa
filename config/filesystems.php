@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'storage'),
+    'default' => env('FILESYSTEM_DRIVER', 'app'),
 
     /*
     |--------------------------------------------------------------------------
@@ -37,13 +37,13 @@ return [
     | may even configure multiple disks of the same driver. Defaults have
     | been setup for each driver as an example of the required options.
     |
-    | Supported Drivers: "local", "ftp", "sftp", "s3"
+    | Supported Drivers: "local", "ftp", "sftp", "s3", "async"
     |
     */
 
     'disks' => [
 
-        'storage' => [
+        'app' => [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
