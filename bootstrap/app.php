@@ -5,6 +5,11 @@ $app = new Elephant\Foundation\Application(
 );
 
 $app->singleton(
+    Elephant\Contracts\EventLoop\Kernel::class,
+    Elephant\Foundation\EventLoop\Kernel::class
+);
+
+$app->singleton(
     Elephant\Contracts\Mail\Kernel::class,
     App\Mail\Kernel::class
 );
