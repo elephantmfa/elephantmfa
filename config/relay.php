@@ -61,8 +61,8 @@ return [
     | in memory and be run through the queue pipeline while still in memory,
     | nefore sent to it's final destination.
     |
-    | Options: none, event-loop, queue
+    | Options: none, process, queue
     */
-    'queue_processor' => 'event-loop',
+    'queue_processor' => 'process',
 
 ];
