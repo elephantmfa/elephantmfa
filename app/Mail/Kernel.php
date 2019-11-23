@@ -6,6 +6,11 @@ use Elephant\Foundation\Mail\Kernel as MailKernel;
 
 class Kernel extends MailKernel
 {
+    /**
+     * The filters to apply to different steps in the mail process.
+     *
+     * @var array
+     */
     protected $filters = [
 
         /**
