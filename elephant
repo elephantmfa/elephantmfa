@@ -6,7 +6,9 @@ require __DIR__ . '/vendor/autoload.php';
 $app = require_once __DIR__ . '/bootstrap/app.php';
 
 if ($argv[1] == 'start') {
-    $kernel = $app->make(Elephant\Contracts\Mail\Kernel::class);
+    $kernel = $app->make(Elephant\Contracts\EventLoop\Kernel::class);
+
+    $kernel->bootstrap();
 
     $kernel->handle();
 
