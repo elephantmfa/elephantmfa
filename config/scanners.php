@@ -24,8 +24,14 @@ return [
         'connect_timeout' => 5, // seconds
         // The timeout waiting for results until given up.
         'results_timeout' => 300, // seconds
-        // If run_spamd is enabled, Spamd will be started with ElephantMFA,
-        //    and will be killed when ElephantMFA is killed.
-        'run_spamd' => false,
+        'spamd' => [
+            // If `manage` is enabled, SpamD will be started with ElephantMFA,
+            //    and will be killed when ElephantMFA is killed. Additionally,
+            //    log output from SpamD will be handled by ElephantMFA.
+            'manage' => false,
+            'parameters' => [
+                '-u ubuntu'
+            ],
+        ],
     ],
 ];
