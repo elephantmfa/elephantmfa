@@ -71,6 +71,26 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Subprocess management
+    |--------------------------------------------------------------------------
+    |
+    | This controls the number of subprocesses to be running. Min is the minimum
+    | number of processes to be keeping around at all times, while max is the
+    | maximum number of processes to open. A process will die after handling
+    | `max_requests`. Alternatively, if a process hasn't gotten a message in
+    | `timeoutz amount of times (in seconds), it will automatically close.
+    |
+    */
+
+    "processes" => [
+        "min" => env('MIN_PROCESSES', 5),
+        "max" => env('MAX_PROCESSES', 20),
+        "max_requests" => env('MAX_REQUESTS', 1000),
+        "timeout" => 60 * 5, // 5 minutes
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Autoloaded Service Providers
     |--------------------------------------------------------------------------
     |
@@ -98,7 +118,6 @@ return [
          */
         Elephant\EventLoop\EventLoopServiceProvider::class,
         Elephant\Mail\MailServiceProvider::class,
-        Elephant\Async\AsyncServiceProvider::class,
 
         /*
          * Package Service Providers...
