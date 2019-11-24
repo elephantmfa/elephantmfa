@@ -9,7 +9,7 @@ class LogEnvelopeFrom implements Filter
 {
     public function filter(Mail $email, $next)
     {
-        info($email->getSender());
+        info("sender = " . $email->getSender());
         return $next($email);
     }
 }

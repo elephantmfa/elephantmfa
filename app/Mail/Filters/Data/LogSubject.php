@@ -9,7 +9,7 @@ class LogSubject implements Filter
 {
     public function filter(Mail $email, $next)
     {
-        info($email->getHeader('subject')[0]);
+        info("subject = " . $email->getHeader('subject')[0]);
         return $next($email);
     }
 }
