@@ -5,15 +5,23 @@ require __DIR__ . '/vendor/autoload.php';
 
 $app = require_once __DIR__ . '/bootstrap/app.php';
 
-if ($argv[1] == 'start') {
+$argv1 = $argv[1] ?? '';
+
+if ($argv1 == 'start') {
     $kernel = $app->make(Elephant\Contracts\EventLoop\Kernel::class);
 
     $kernel->bootstrap();
 
     $kernel->handle();
-
-    $kernel->terminate();
 } else {
-    // @todo Implement standard console access to allow for 
-    //       scaffolding and the like.
+    $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+
+    $status = $kernel->handle(
+        $input = new Symfony\Component\Console\Input\ArgvInput,
+        new Symfony\Component\Console\Output\ConsoleOutput
+    );
+
+    $kernel->terminate($input, $status);
+
+    exit($status);
 }
