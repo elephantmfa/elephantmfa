@@ -121,12 +121,14 @@ return [
         Illuminate\Database\DatabaseServiceProvider::class,
         Illuminate\Filesystem\FilesystemServiceProvider::class,
         Illuminate\Pipeline\PipelineServiceProvider::class,
+        Illuminate\Queue\QueueServiceProvider::class,
 
         /*
          * ElephantMFA Framework Service Providers...
          */
         Elephant\EventLoop\EventLoopServiceProvider::class,
         Elephant\Mail\MailServiceProvider::class,
+        Elephant\Foundation\Providers\ConsoleSupportServiceProvider::class,
 
         /*
          * Package Service Providers...
