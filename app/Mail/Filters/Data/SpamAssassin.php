@@ -11,7 +11,7 @@ use Elephant\Foundation\Application;
 class SpamAssassin implements Filter
 {
     /**
-     * Run a filter against the mail.
+     * Check the mail using SpamAssassin.
      *
      * @param Mail $mail
      * @param callable $next
@@ -19,32 +19,43 @@ class SpamAssassin implements Filter
      */
     public function filter(Mail $email, $next)
     {
+        // Create a new SpamAssassin client.
         $sa = new SpamAssassinClient($email);
+        // Scan, and if failed, report the error.
         if (! $sa->scan()) {
             error("SpamAssassin error: $sa->error");
-            
+
             return $next($email);
         }
+
+        // Get results.
         $results = $sa->getResults();
 
+        // Calculate the total score.
         $totalScore = collect($results['tests'])->map(function ($test) {
             return $test['score'];
         })->sum();
+
+        // Format for the headers.
         $tests = collect($results['tests'])->map(function ($test) {
             return "{$test['name']}={$test['score']}";
         })->implode(',');
 
         $spamStatus = $totalScore > 5 ? 'Yes' : 'No';
 
-        info("X-Spam-Status: $spamStatus score=$totalScore tests=$tests");
-        info("X-SpamChecker-Version: SpamAssassin v{$results['version']}; ElephantMFA v" . Application::VERSION);
+        // Generate headers
+        $xSpamStatusHeader = "$spamStatus score=$totalScore tests=$tests";
+        $xSpamCheckerVersion = "SpamAssassin v{$results['version']}; ElephantMFA v" . Application::VERSION;
 
-        $email->appendHeader('X-Spam-Status', "$spamStatus score=$totalScore tests=$tests");
-        $email->appendHeader(
-            'X-SpamChecker-Version',
-            "SpamAssassin v{$results['version']}; ElephantMFA v" . Application::VERSION
-        );
+        // Log the headers.
+        info("X-Spam-Status: $xSpamStatusHeader");
+        info("X-SpamChecker-Version: $xSpamCheckerVersion");
 
+        // Append the headers.
+        $email->appendHeader('X-Spam-Status', $xSpamStatusHeader);
+        $email->appendHeader('X-SpamChecker-Version', $xSpamCheckerVersion);
+
+        // Quarantine if considered Spam.
         if ($totalScore > 5) {
             throw new QuarantineException();
         }
