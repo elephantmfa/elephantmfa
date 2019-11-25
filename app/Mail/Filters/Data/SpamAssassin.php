@@ -4,6 +4,7 @@ namespace App\Mail\Filters\Data;
 
 use Elephant\Contracts\Filter;
 use Elephant\Contracts\Mail\Mail;
+use Elephant\Filtering\Exception\QuarantineException;
 use Elephant\Filtering\SpamAssassin as SpamAssassinClient;
 use Elephant\Foundation\Application;
 
@@ -42,6 +43,10 @@ class SpamAssassin implements Filter
             'X-SpamChecker-Version',
             "SpamAssassin v{$results['version']}; ElephantMFA v" . Application::VERSION
         );
+
+        if ($totalScore > 5) {
+            throw new QuarantineException();
+        }
 
         return $next($email);
     }
