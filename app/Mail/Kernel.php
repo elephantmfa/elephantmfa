@@ -56,6 +56,7 @@ class Kernel extends MailKernel
          */
         'data' => [
             \App\Mail\Filters\Data\LogSubject::class,
+            \App\Mail\Filters\Data\SpamAssassin::class,
         ],
 
         /**
