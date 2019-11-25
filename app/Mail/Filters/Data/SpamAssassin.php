@@ -22,6 +22,7 @@ class SpamAssassin implements Filter
         $sa = new SpamAssassinClient($email);
         if (! $sa->scan()) {
             error("SpamAssassin error: $sa->error");
+            
             return $next($email);
         }
         $results = $sa->getResults();
