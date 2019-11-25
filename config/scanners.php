@@ -20,10 +20,8 @@ return [
         'socket' => env('SPAMASSASSIN_PORT', 'ipv4://127.0.0.1:783'),
         // The total bytes sent to SpamAssassin
         'max_size' => 128 * 1000, // 128 Kb
-        // The timeout until connection to SpamAssassin is given up.
-        'connect_timeout' => 5, // seconds
-        // The timeout waiting for results until given up.
-        'results_timeout' => 300, // seconds
+        // The timeout until reading from SpamAssassin is given up.
+        'timeout' => 60, // seconds
         'spamd' => [
             // If `manage` is enabled, SpamD will be started with ElephantMFA,
             //    and will be killed when ElephantMFA is killed. Additionally,
