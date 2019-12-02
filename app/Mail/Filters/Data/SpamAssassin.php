@@ -32,9 +32,7 @@ class SpamAssassin implements Filter
         $results = $sa->getResults();
 
         // Calculate the total score.
-        $totalScore = collect($results['tests'])->map(function ($test) {
-            return $test['score'];
-        })->sum();
+        $totalScore = $results['total_score'];
 
         // Format for the headers.
         $tests = collect($results['tests'])->map(function ($test) {
@@ -47,7 +45,7 @@ class SpamAssassin implements Filter
         $xSpamStatusHeader = "$spamStatus score=$totalScore tests=$tests";
         $xSpamCheckerVersion = "SpamAssassin v{$results['version']}; ElephantMFA v" . Application::VERSION;
 
-        // Log the headers.
+        // Log the headers being added.
         info("X-Spam-Status: $xSpamStatusHeader");
         info("X-SpamChecker-Version: $xSpamCheckerVersion");
 
