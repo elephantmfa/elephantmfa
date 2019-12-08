@@ -57,12 +57,24 @@ return [
     | handled with the event loop, or with queues. If handled with queues,
     | management of processing queued mail can be handled separately from
     | handling mail coming in. Alternatively, queuing of files can be disabled
-    | altogether by setting this to none. This means the message will be held
-    | in memory and be run through the queue pipeline while still in memory,
-    | nefore sent to it's final destination.
+    | altogether by setting this to none. This means the message will skip the
+    | queued step of mail processing, and will continue onto it's final
+    | destination.
     |
     | Options: none, process, queue
     */
     'queue_processor' => 'process',
 
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default Relay
+    |--------------------------------------------------------------------------
+    |
+    | If no final destination is set for a mail, this will be used as the final
+    | destination. It must be of IPv4:Port format or [IPv6]:Port format.
+    |
+    */
+    'default_relay' => '127.0.0.1:10031',
 ];
