@@ -5,7 +5,7 @@ namespace App\Mail\Filters\Data;
 use Elephant\Contracts\Filter;
 use Elephant\Contracts\Mail\Mail;
 use Elephant\Filtering\Exception\QuarantineException;
-use Elephant\Filtering\SpamAssassin as SpamAssassinClient;
+use Elephant\Filtering\Scanners\SpamAssassin as SpamAssassinClient;
 use Elephant\Foundation\Application;
 
 class SpamAssassin implements Filter
