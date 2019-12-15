@@ -17,7 +17,7 @@ return [
         //   Use ipv4:// for an IPv4 address. Must be IP:port format.
         //   Use ipv6:// for an IPv6 address. Must be [IP]:port format.
         //   Use unix:// for a Unix socket.
-        'socket' => env('SPAMASSASSIN_PORT', 'ipv4://127.0.0.1:783'),
+        'socket' => env('SPAMASSASSIN_DSN', 'ipv4://127.0.0.1:783'),
         // The total bytes sent to SpamAssassin. Set to 0 to send full email.
         //   Sending full email will cause SpamAssassin scanning to take much
         //   longer.
@@ -49,7 +49,7 @@ return [
         //   Use ipv4:// for an IPv4 address. Must be IP:port format.
         //   Use ipv6:// for an IPv6 address. Must be [IP]:port format.
         //   Use unix:// for a Unix socket.
-        'socket' => env('CLAMAV_PORT', 'ipv4://127.0.0.1:3310'),
+        'socket' => env('CLAMAV_DSN', 'ipv4://127.0.0.1:3310'),
         // Only send files that are smaller than `max_size` in bytes.
         //   Note: Unless an Attachment's size is specified, the size will
         //   be estimated. Thus, larger files may be sent, so smaller is faster.
