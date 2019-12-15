@@ -54,6 +54,14 @@ return [
         //   Note: Unless an Attachment's size is specified, the size will
         //   be estimated. Thus, larger files may be sent, so smaller is faster.
         'max_size' => 64 * 1000, // 64 Kb
+        // Whether or not to write the body parts to disk and scan them from disk.
+        //   When true, scanning can happen asynchronously, however it is disk
+        //     dependent.
+        //   When false, scanning will happen synchronously, however it is only
+        //     memory dependent. Additionally, this is what you would use if
+        //     ClamAV exists on another server or in a docker container from the
+        //     Elephant processes.
+        'on_disk' => false,
         // Whether or not to send the full email to ClamAV.
         //   This is useful for scanning for phishing signatures from ClamAV.
         'send_email' => [
@@ -62,6 +70,6 @@ return [
             //   Sending full email will cause ClamAV scanning to take much
             //   longer.
             'max_size' => 128 * 1000, // 128 Kb
-        ]
+        ],
     ],
 ];
