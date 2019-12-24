@@ -82,11 +82,28 @@ return [
     |
     */
 
-    "processes" => [
-        "min" => env('MIN_PROCESSES', 5),
-        "max" => env('MAX_PROCESSES', 20),
-        "max_requests" => env('MAX_REQUESTS', 1000),
-        "timeout" => 60 * 5, // 5 minutes
+    'processes' => [
+        'min' => env('MIN_PROCESSES', 5),
+        'max' => env('MAX_PROCESSES', 20),
+        'max_requests' => env('MAX_REQUESTS', 1000),
+        'timeout' => 60 * 5, // 5 minutes
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | DNS
+    |--------------------------------------------------------------------------
+    |
+    | Specify the DNS settings to use for DNS lookups. The timeout is how long
+    | will be given before giving up on a lookup. This is in seconds.
+    | Server is whats to be used to resolve dns requests. This has to
+    | be a string. For best results, this should be a local caching server.
+    |
+    */
+
+    'dns' => [
+        'timeout' => 10, // seconds
+        'server' => '8.8.8.8',
     ],
 
     /*
@@ -96,7 +113,7 @@ return [
     |
     */
 
-    "command_path" => base_path('elephant'),
+    'command_path' => base_path('elephant'),
 
     /*
     |--------------------------------------------------------------------------
@@ -173,6 +190,6 @@ return [
         'Schema' => Illuminate\Support\Facades\Schema::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'Str' => Illuminate\Support\Str::class,
-        
+
     ],
 ];
