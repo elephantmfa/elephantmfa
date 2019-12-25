@@ -9,6 +9,14 @@ use Elephant\Filtering\Scanners\ClamAV as ClamAVClient;
 
 class ClamAV implements Filter
 {
+    /** @var \Elephant\Filtering\Scanners\ClamAV $clamAV */
+    protected $clamAV;
+
+    public function __construct(ClamAVClient $clamAV)
+    {
+        $this->clamAV = $clamAV;
+    }
+
     /**
      * Check the mail using SpamAssassin.
      *
@@ -18,17 +26,15 @@ class ClamAV implements Filter
      */
     public function filter(Mail $email, $next)
     {
-        // Create a new SpamAssassin client.
-        $clamAV = new ClamAVClient($email);
         // Scan, and if failed, report the error.
-        if (! $clamAV->scan()) {
-            error("ClamAV error: $clamAV->error");
+        if (! $this->clamAV->scan($email)) {
+            error("ClamAV error: $this->clamAV->error");
 
             return $next($email);
         }
 
         // Get results.
-        $results = $clamAV->getResults();
+        $results = $this->clamAV->getResults();
 
         $infected = $results['infected'];
 

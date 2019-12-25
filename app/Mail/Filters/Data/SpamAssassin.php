@@ -10,6 +10,13 @@ use Elephant\Foundation\Application;
 
 class SpamAssassin implements Filter
 {
+    /** @var \Elephant\Filtering\Scanners\SpamAssassin $clamAV */
+    protected $sa;
+
+    public function __construct(SpamAssassinClient $sa)
+    {
+        $this->sa = $sa;
+    }
     /**
      * Check the mail using SpamAssassin.
      *
@@ -19,17 +26,15 @@ class SpamAssassin implements Filter
      */
     public function filter(Mail $email, $next)
     {
-        // Create a new SpamAssassin client.
-        $sa = new SpamAssassinClient($email);
         // Scan, and if failed, report the error.
-        if (! $sa->scan()) {
-            error("SpamAssassin error: $sa->error");
+        if (! $this->sa->scan($email)) {
+            error("SpamAssassin error: $this->sa->error");
 
             return $next($email);
         }
 
         // Get results.
-        $results = $sa->getResults();
+        $results = $this->sa->getResults();
 
         // Calculate the total score.
         $totalScore = $results['total_score'];
