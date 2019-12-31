@@ -28,7 +28,7 @@ class SpamAssassin implements Filter
     {
         // Scan, and if failed, report the error.
         if (! $this->sa->scan($email)) {
-            error("SpamAssassin error: $this->sa->error");
+            error("SpamAssassin error: {$this->sa->error}");
 
             return $next($email);
         }

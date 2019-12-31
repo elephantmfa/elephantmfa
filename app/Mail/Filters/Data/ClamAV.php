@@ -28,7 +28,7 @@ class ClamAV implements Filter
     {
         // Scan, and if failed, report the error.
         if (! $this->clamAV->scan($email)) {
-            error("ClamAV error: $this->clamAV->error");
+            error("ClamAV error: {$this->clamAV->error}");
 
             return $next($email);
         }
