@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use React\Stream\WritableStreamInterface;
 use Elephant\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -38,14 +39,14 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * Render an exception into an HTTP response.
+     * Render an exception to the console.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param \React\Stream\WritableStreamInterface $connection
+     * @param \Exception                            $exception
+     * @return void
      */
-    public function render($request, Exception $exception)
+    public function renderForMail(WritableStreamInterface $connection, Exception $exception): void
     {
-        return parent::render($request, $exception);
+        parent::renderForMail($connection, $exception);
     }
 }
