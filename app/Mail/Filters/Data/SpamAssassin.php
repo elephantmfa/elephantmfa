@@ -4,7 +4,7 @@ namespace App\Mail\Filters\Data;
 
 use Elephant\Contracts\Filter;
 use Elephant\Contracts\Mail\Mail;
-use Elephant\Filtering\Exception\QuarantineException;
+use Elephant\Filtering\Actions\Quarantine;
 use Elephant\Filtering\Scanners\SpamAssassin as SpamAssassinClient;
 use Elephant\Foundation\Application;
 
@@ -60,7 +60,7 @@ class SpamAssassin implements Filter
 
         // Quarantine if considered Spam.
         if ($totalScore > 5) {
-            throw new QuarantineException();
+            throw new Quarantine();
         }
 
         return $next($email);
